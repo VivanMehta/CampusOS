@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Grades from "./pages/Grades";
 import {
   LayoutDashboard,
   BookOpen,
@@ -258,14 +259,7 @@ function App() {
               </section>
             )}
 
-            {page === "Grades" && (
-              <section className="panel">
-                <h2>Grade tracker</h2>
-                <p className="empty">
-                  Grade synchronization and calculations are coming next.
-                </p>
-              </section>
-            )}
+            {page === "Grades" && <Grades courses={courses} />}
 
             {page === "Settings" && (
               <section className="panel">

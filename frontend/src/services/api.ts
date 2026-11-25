@@ -18,8 +18,41 @@ export interface CalendarEvent {
   course: number | null;
 }
 
+export interface GradeCategory {
+  id: number;
+  name: string;
+  weight: string;
+  excluded: boolean;
+  highest_to_drop: number;
+  lowest_to_drop: number;
+}
+
+export interface GradeItem {
+  id: number;
+  category: number | null;
+  name: string;
+  max_points: string;
+  earned_points: string | null;
+  percentage: number | null;
+  weight: string;
+  displayed_grade: string;
+  is_bonus: boolean;
+  excluded: boolean;
+  feedback: string;
+}
+
+export interface Assignment {
+  id: number;
+  title: string;
+  due_date: string | null;
+  status: string;
+  grade_item: number | null;
+  submission_count: number;
+}
+
 export interface Course {
   id: number;
+  semester: number;
   brightspace_id: number | null;
   code: string;
   name: string;
@@ -28,8 +61,10 @@ export interface Course {
   is_active: boolean;
   can_access: boolean;
   home_url: string;
+  grade_categories: GradeCategory[];
+  grade_items: GradeItem[];
+  assignments: Assignment[];
 }
-
 export async function getCalendarEvents(): Promise<CalendarEvent[]> {
   const response = await api.get("calendar/");
   return response.data;
